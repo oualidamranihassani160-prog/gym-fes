@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #F97316;
+  --color-background: #F3F4F6;
+  --color-surface: #FFFFFF;
+  --color-text: #0F172A;
+  --header-bg: rgba(15, 23, 42, 0.03);
+  --header-text: #111827;
+  --btn-secondary-hover: rgba(15, 23, 42, 0.06);
+  --row-hover-bg: rgba(15, 23, 42, 0.06); /* light subtle hover */
+  --placeholder-bg: #E5E7EB;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+}
+
+.dark {
+  --color-primary: #F97316;
+  --color-background: #0B1220;
+  --color-surface: #0F1724;
+  --color-text: #F9FAFB;
+  --header-bg: rgba(255,255,255,0.03);
+  --header-text: #F9FAFB;
+  --btn-secondary-hover: rgba(255,255,255,0.04);
+  --row-hover-bg: rgba(255,255,255,0.03); /* slightly visible in dark */
+  --placeholder-bg: #374151;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+}
+
+/* Utility classes backed by variables */
+.bg-background { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.text-text { color: var(--color-text); }
+.text-primary { color: var(--color-primary); }
+.bg-primary { background-color: var(--color-primary); }
+
+
+@layer components {
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background-color: var(--btn-secondary-hover);
+  }
+  
+  .btn-danger {
+    background-color: var(--color-danger);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  .btn-danger:hover {
+    opacity: 0.9;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0 1rem;
+    height: 3rem;
+    background-color: var(--color-surface);
+    border: 1px solid rgba(55, 65, 81, 0.6);
+    border-radius: 0.5rem;
+    color: var(--color-text);
+    transition: all 0.2s;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    ring: 2px solid var(--color-primary);
+  }
+  
+  .card {
+    background-color: var(--color-surface);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #374151;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+  }
+  
+  .badge-success {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--color-success);
+  }
+  
+  .badge-warning {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: var(--color-warning);
+  }
+  
+  .badge-danger {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--color-danger);
+  }
+}
+
+/* Membership badge (uses subtle background, visible on both themes) */
+.membership-badge {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: rgba(249, 115, 22, 0.08); /* subtle orange */
+  color: var(--color-primary);
+}
+
+.dark .membership-badge {
+  background-color: rgba(249, 115, 22, 0.16);
+  color: var(--color-primary);
+}
+
+
+/* Table header styling used across Members, Archived, and Products tables */
+.table-header {
+  background-color: var(--color-primary) !important;
+  color: var(--header-text) !important;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+}
+
+.table-cell {
+  padding: 0.75rem 1rem;
+}
+
+/* Ensure table text is readable in dark mode */
+.dark .table-header {
+  color: var(--color-text) !important;
+}
+
+.dark .table-cell {
+  color: var(--color-text) !important;
+}
+
+.dark table {
+  color: var(--color-text) !important;
+}
+
+/* Override Tailwind hover gray classes for table rows to use theme-aware hover */
+.hover\:bg-gray-800:hover,
+.hover\:bg-gray-700:hover {
+  background-color: var(--row-hover-bg) !important;
+}
+
+/* Specific for rows using hover:bg-gray-800 (table rows) to ensure contrast */
+tr.hover\:bg-gray-800:hover,
+tr.hover\:bg-gray-700:hover {
+  background-color: var(--row-hover-bg) !important;
+}
+
+/* Make placeholder gray utilities theme-aware so image placeholders use appropriate color */
+.bg-gray-700 {
+  background-color: var(--placeholder-bg) !important;
+}
+.bg-gray-800 {
+  background-color: var(--placeholder-bg) !important;
+}
+
+.dark .bg-gray-700 {
+  background-color: var(--placeholder-bg) !important;
+}
+.dark .bg-gray-800 {
+  background-color: var(--placeholder-bg) !important;
+}
